@@ -1,20 +1,21 @@
-FROM		ubuntu
+FROM		node:lts
 
-ARG			UID GID NAME PSW
+ARG			NAME PSW DIR
 
 RUN			apt update \
-			&& apt install -qqy \
-				nodejs \
-				npm \
+			&& apt install -qy \
 				sudo
 
 RUN			npm install -g @angular/cli
 
-RUN			useradd -u ${UID} -m ${NAME} \
-				&& echo ${NAME}:${PSW} | chpasswd \
-				&& usermod -a -G sudo ${NAME}
+# create cadmos group
+RUN			groupadd cadmos
+# create new user (m: create home dir. d: default login dir. s: default tty. G: list of supplementary groups.)
+RUN			useradd -m -d /home/${NAME} -s /bin/bash -G cadmos,sudo ${NAME}
+# set up a password
+RUN			echo ${NAME}:${PSW} | chpasswd
 
-WORKDIR		/homes-app/
+WORKDIR		${DIR}
 
 USER		${NAME}
 
