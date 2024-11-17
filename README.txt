@@ -1,1 +1,1 @@
-Web app that I build following angular YouTube course
+Repo that I use to learn angular
