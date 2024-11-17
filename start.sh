@@ -1,18 +1,19 @@
 #!/bin/bash
 
-NAME=production-case
+NAME=angular
+DIR=/shared/
 
 docker build \
   --build-arg NAME=$(id -un) \
-  --build-arg UID=$(id -u) \
-  --build-arg GID=$(id -g) \
   --build-arg PSW=1234 \
-  -t "$NAME" \
+  --build-arg DIR="$DIR" \
+  --tag "$NAME" \
   .
 
 docker run \
-  -it \
+  --interactive \
+  --tty \
   --name "${NAME}" \
   --network host \
-  --volume ./homes-app/:/homes-app/ \
+  --volume .$DIR:$DIR \
   "${NAME}"
