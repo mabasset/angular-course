@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    min-height: 100svh;
+    display: flex;
+    background-color: slategray;
+}
+
+main {
+    flex-grow: 1;
+    background-color: yellow;
+}
