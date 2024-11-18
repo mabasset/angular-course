@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NAME=angular
-DIR=/shared/
+DIR=/test/
 
 docker build \
   --build-arg NAME=$(id -un) \

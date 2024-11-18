@@ -1,0 +1,25 @@
+[box] {
+	width: 100px;
+	height: 100px;
+	border-right: solid 2px black;
+	background: red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+ul {
+	display: flex;
+	flex-direction: row;
+	width: 300px;
+}
+
+.controller {
+	width: 40px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+

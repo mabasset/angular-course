@@ -1,5 +1,5 @@
 # choose base image
-FROM		debian:bookworm
+FROM		node:22
 
 # define build arguments
 ARG			UID GID NAME PSW DIR
@@ -7,8 +7,13 @@ ARG			UID GID NAME PSW DIR
 # update base image dependencies and install new ones
 RUN			apt update \
 			&& apt install -qy \
-				curl \
 				sudo
+
+# install nvm (node version manager) (- stands for stdout)
+RUN         npm install -g -f @angular/cli --verbose
+
+# delete node user
+RUN         userdel node
 
 # create cadmos group
 RUN			groupadd -g ${GID} cadmos
@@ -21,13 +26,6 @@ RUN			echo ${NAME}:${PSW} | chpasswd
 
 # log into the new account
 USER		${NAME}
-
-# install nvm (node version manager) (- stands for stdout)
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash \
-    && export NVM_DIR="$HOME/.nvm" \
-    && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" \
-    && nvm install 22 \
-    && npm install -g -f @angular/cli --verbose
 
 # change current directory
 WORKDIR		${DIR}
