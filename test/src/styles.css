@@ -12,24 +12,3 @@ body {
     flex-direction: column;
     background-color: slategray;
 }
-
-[cdkDragHandle] {
-	position: absolute;
-    cursor: move;
-    width: 24px;
-	height: 24px;
-    top: 5px;
-}
-
-.cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.cdk-drag-placeholder {
-    opacity: 0.5;
-}
-
-.cdk-drop-list-dragging [box],
-.cdk-drop-list-dragging [shelf] {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}

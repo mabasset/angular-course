@@ -1,4 +1,19 @@
-<ul>
-  <li shelf id='1' cdkDrag>
-  </li>
-</ul>
+<section class="toolbar">
+  <button (click)="createCloset()">closet</button>
+  <button (click)="createShelf()">shelf</button>
+  <button (click)="createBox()">box</button>
+  <button (click)="clearContainer()">clear</button>
+</section>
+<ng-container #container></ng-container>
+<ng-template #closet>
+  <div closet cdkDrag cdkDragBoundary="main">
+  </div>
+</ng-template>
+<ng-template #shelf>
+  <div shelf cdkDrag cdkDragBoundary="main">
+  </div>
+</ng-template>
+<ng-template #box let-view="view">
+  <div box cdkDrag cdkDragBoundary="main" [view]="view">
+  </div>
+</ng-template>
